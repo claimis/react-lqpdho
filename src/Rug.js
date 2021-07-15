@@ -5,6 +5,7 @@ import React, {
   useRef,
   useCallback
 } from 'react';
+import anime  from "animejs"
 import Dice from './Dice';
 import Layout from './Layout';
 import './style.css';
@@ -17,8 +18,8 @@ const Rug = ({ cards, cardProp }) => {
   const callback = useCallback(count => {
     setDices(new Array(count).fill(1).map((x, i) => x + i));
 
-    if (user == 1) setUser(2);
-    else if (user == 2) setUser(1);
+    // if (user == 1) setUser(2);
+    // else if (user == 2) setUser(1);
   });
 
   useEffect(() => {
@@ -27,16 +28,27 @@ const Rug = ({ cards, cardProp }) => {
 
   useEffect(() => {
     console.log('detecto cambios en el dices');
+    anime({
+      targets: '.dice',
+      translateX: 50,
+      opacity: 1,
+      rotate: '1turn'
+});
+
   }, [dices]);
 
   const parent = useRef(null);
 
   // useEffect(() => {}, []);
 
+  // para los estilos
+  //{{opacity: (user == 1) ? 1 :0.3, pointerEvents: (user == 1) ? "auto": "none"}}
+
   return (
     <div className="parent-rug">
       <div className="rug">
         <div className="users">
+
           <div className="user user1">
             <Layout parentCallback={callback} />
             Name
@@ -44,9 +56,9 @@ const Rug = ({ cards, cardProp }) => {
               className="wrap-dices"
               style={{ display: 'flex', flexDirection: 'row' }}
             >
-              {dices &&
+              {dices && user == 1 &&
                 dices.map((x, i) => (
-                  <div key={i}>
+                  <div className="dice" key={i}>
                     <Dice maxNum={6} />
                   </div>
                 ))}
@@ -61,9 +73,9 @@ const Rug = ({ cards, cardProp }) => {
               style={{ display: 'flex', flexDirection: 'row' }}
             >
               {dices &&
-                user.current == 2 &&
+                user == 2 &&
                 dices.map((x, i) => (
-                  <div key={i}>
+                  <div className="dice" key={i} style={{opacity: 0}}>
                     <Dice maxNum={6} />
                   </div>
                 ))}

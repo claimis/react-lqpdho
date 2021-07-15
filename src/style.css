@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 html,
 body {
   background-color: black;
@@ -9,7 +10,7 @@ h3,
 h4,
 p,
 div {
-  font-family: Lato;
+  font-family: Raleway;
   color: white;
 }
 
@@ -48,7 +49,6 @@ div {
 .parent-dice {
   height: 50px;
   width: 50px;
-  border: 1px solid whitesmoke;
 }
 
 .parent-dice .result {

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
+import {AiOutlineCaretUp, AiOutlineCaretDown} from 'react-icons/ai';
+import {GiDiceFire } from 'react-icons/gi';
 
 import './style.css';
 
@@ -33,7 +35,7 @@ const Layout = ({ parentCallback, urs }) => {
         fontSize: style.fontSize,
         backgroundColor: style.backgroundColor,
         display: style.display,
-        alignItems: 'baseline',
+        alignItems: 'center',
         justifyContent: 'flex-end',
         white: style.width,
         height: style.height
@@ -42,36 +44,22 @@ const Layout = ({ parentCallback, urs }) => {
       <div
         style={{
           display: style.display,
-          alignItems: 'baseline',
-          marginLeft: '4px'
+          alignItems: 'center'
         }}
       >
-        <div
-          className="plus-layout"
-          style={{ color: 'slategrey' }}
-          onClick={() => setNum(num - 1)}
-        >
-          ^
-        </div>
+
+        < AiOutlineCaretUp className="plus-layout" style={{color: "black"}} onClick={() => setNum(num + 1)}/>
 
         <div
           className="nums-layout"
           style={{
             color: style.color,
-            padding: style.padding,
-            marginLeft: '4px'
+            padding: style.padding
           }}
         >
           {num}
         </div>
-
-        <div
-          className="plus-layout"
-          style={{ color: 'slategrey', marginLeft: '4px' }}
-          onClick={() => setNum(num + 1)}
-        >
-          v
-        </div>
+        < AiOutlineCaretDown className="plus-layout" style={{color: "black"}} onClick={() => setNum(num - 1)}/>
       </div>
 
       <div className="layout-maxnum-wrap">
@@ -87,18 +75,7 @@ const Layout = ({ parentCallback, urs }) => {
       </div>
 
       <div className="layout-pull-button">
-        <button onClick={() => parentCallback(num)}
-          style={{
-            backgroundColor: 'black',
-            color: 'white',
-            border: '1px solid white',
-            padding: '3px',
-            borderRadius: '13px',
-            marginLeft: '4px'
-          }}
-        >
-          Pull!
-        </button>
+        <GiDiceFire  style={{color: "black", padding: "3px"}} size={30} onClick={() => parentCallback(num)} />
       </div>
     </div>
   );
